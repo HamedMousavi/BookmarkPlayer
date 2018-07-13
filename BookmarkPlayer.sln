@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkPlayer.Domain", "BookmarkPlayer.Domain\BookmarkPlayer.Domain.csproj", "{61898B8A-8DFF-431B-B842-B4988979C446}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkPlayer.Domain.Tests", "BookmarkPlayer.Domain.Tests\BookmarkPlayer.Domain.Tests.csproj", "{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61898B8A-8DFF-431B-B842-B4988979C446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61898B8A-8DFF-431B-B842-B4988979C446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61898B8A-8DFF-431B-B842-B4988979C446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61898B8A-8DFF-431B-B842-B4988979C446}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
