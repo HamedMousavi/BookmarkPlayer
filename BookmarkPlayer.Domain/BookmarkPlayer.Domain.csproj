@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Composable.cs" />
+    <Compile Include="Folder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectableComposable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
