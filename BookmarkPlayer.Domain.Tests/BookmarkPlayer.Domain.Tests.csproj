@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MediaListTests.cs" />
+    <Compile Include="ComposableTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookmarkPlayer.Domain\BookmarkPlayer.Domain.csproj">
