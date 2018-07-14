@@ -7,80 +7,134 @@ using System.Linq;
 namespace BookmarkPlayer.Domain
 {
 
-    public class Composable : IEnumerable<Composable>
+    public class Composable : IComposable
     {
-
-        public string Title { get; }
-        public DateTime AddDate { get; protected set; }
-        public DateTime? DeleteDate { get; protected set; }
-
 
         public Composable(string title)
         {
-            Title = title;
+            _title = title;
         }
 
 
-        public virtual void Add(Composable composable)
+        public string Title()
+        {
+            return _title;
+        }
+
+
+        public DateTime? AddedDate()
+        {
+            return _addedDate;
+        }
+
+
+        public DateTime? DeletedDate()
+        {
+            return _deletedDate;
+        }
+
+
+        public virtual void Add(IComposable composable)
         {
             if (composable == null) throw new ComposableNullException(nameof(composable));
-            if (_children == null) _children = new HashSet<Composable>();
+            if (_children == null) _children = new HashSet<IComposable>();
 
-            composable.AddDate = DateTime.UtcNow;
-            _children.Add(composable);
+            composable.AddTo(_children);
         }
 
 
-        //public void Remove(Composable media)
-        //{
-        //    if (_children == null) throw new ComposableListEmptyException();
-        //    _children.Remove(media);
-        //}
-
-
-        public virtual void Remove(Composable composable)
+        protected virtual void Delete(IComposable composable)
         {
             if (_children == null) throw new ComposableListEmptyException();
             if (composable == null) throw new ComposableNullException(nameof(composable));
-            if (!_children.Contains(composable)) throw new NotInComposableListException(composable.Title);
+            if (!_children.Contains(composable)) throw new NotInComposableListException(composable.Title());
 
-            composable.DeleteDate = DateTime.UtcNow;
+            composable.RemoveFrom(_children);
         }
 
 
-        public virtual int Count()
+        protected virtual int GetCount()
         {
             return _children == null ? 0 : _children.Count(IsActive);
         }
 
 
-
-
-        public IEnumerator<Composable> GetEnumerator()
+        public void AddTo(ICollection<IComposable> collection)
         {
-            return _children?.Where(IsActive).GetEnumerator();
+            if (collection == null) throw new ComposableListEmptyException();
+            _addedDate = DateTime.UtcNow;
+            collection.Add(this);
+        }
+
+
+        public void RemoveFrom(ICollection<IComposable> collection)
+        {
+            _deletedDate = DateTime.UtcNow;
+        }
+
+
+        public IEnumerator<IComposable> GetEnumerator()
+        {
+            return _children == null
+                ? Enumerable.Empty<IComposable>().GetEnumerator()
+                : _children.Where(IsActive).GetEnumerator();
         }
 
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _children?.Where(IsActive).GetEnumerator();
+            return _children == null
+                ? Enumerable.Empty<IComposable>().GetEnumerator()
+                : _children.Where(IsActive).GetEnumerator();
         }
 
 
         public override string ToString()
         {
-            return $"{Title} [{AddDate}]";
+            return $"{Title()} [{AddedDate()}]";
         }
 
 
-        protected virtual bool IsActive(Composable composable)
+        protected virtual bool IsActive(IComposable composable)
         {
-            return composable.DeleteDate == null;
+            return composable.DeletedDate() == null;
         }
 
 
-        protected HashSet<Composable> _children;
+        public bool Contains(IComposable composable)
+        {
+            return _children != null && _children.Contains(composable);
+        }
+
+
+        public void Clear()
+        {
+            _children.Clear();
+        }
+
+
+        public void CopyTo(IComposable[] array, int arrayIndex)
+        {
+            if (_children == null) throw new ComposableListEmptyException();
+            _children.CopyTo(array, arrayIndex);
+        }
+
+
+        public bool Remove(IComposable composable)
+        {
+            Delete(composable);
+            return true;
+        }
+
+
+        public int Count => GetCount();
+        public bool IsReadOnly => false;
+
+
+        protected ICollection<IComposable> _children;
+        protected string _title;
+        protected DateTime? _addedDate;
+        protected DateTime? _deletedDate;
     }
 
 
@@ -102,5 +156,9 @@ namespace BookmarkPlayer.Domain
     public class NotInComposableListException : InvalidComposableException
     {
         public NotInComposableListException(string name) : base(name) { }
+    }
+    public class ComposableNotSupportedException : InvalidComposableException
+    {
+        public ComposableNotSupportedException(string name) : base(name) { }
     }
 }
