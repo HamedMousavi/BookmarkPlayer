@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace BookmarkPlayer.Domain
 {
 
-    public class Selectable : IComposable
+    public class Selectable : ISelectable
     {
 
         public Selectable(IComposable composable)
@@ -15,7 +15,7 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public Selectable Selected()
+        public ISelectable Selected()
         {
             return _selected;
         }
@@ -27,24 +27,26 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public virtual void Select(Selectable selectable)
+        public virtual void Select(ISelectable selectable)
         {
-            if (selectable == null) throw new ComposableNullException(nameof(selectable));
-            if (selectable._composable == null) throw new ComposableNullException(nameof(selectable._composable));
-            if (!_composable.Contains(selectable._composable)) throw new NotInComposableListException(selectable.Title());
+            var item = selectable as Selectable;
+            if (item == null) throw new ComposableNullException(nameof(selectable));
+            if (item._composable == null) throw new ComposableNullException(nameof(item._composable));
+            if (!_composable.Contains(item._composable)) throw new NotInComposableListException(selectable.Title());
 
             if (_selected != null) _selected._isSelected = false;
 
-            _selected = selectable;
+            _selected = item;
             _selected._isSelected = true;
         }
 
 
-        public virtual void Deselect(Selectable composable)
+        public virtual void Deselect(ISelectable selectable)
         {
-            if (composable == null) throw new ComposableNullException(nameof(composable));
-            if (!_composable.Contains(composable._composable)) throw new NotInComposableListException(composable.Title());
-            if (_selected != composable) throw new ComposableNotSelectedException();
+            var item = selectable as Selectable;
+            if (item == null) throw new ComposableNullException(nameof(selectable));
+            if (!_composable.Contains(item._composable)) throw new NotInComposableListException(selectable.Title());
+            if (_selected != item) throw new ComposableNotSelectedException();
 
             Deselect();
         }

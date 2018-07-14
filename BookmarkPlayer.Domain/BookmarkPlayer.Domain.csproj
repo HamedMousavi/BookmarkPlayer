@@ -43,6 +43,7 @@
     <Compile Include="Composable.cs" />
     <Compile Include="Folder.cs" />
     <Compile Include="IComposable.cs" />
+    <Compile Include="ISelectable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selectable.cs" />
   </ItemGroup>
