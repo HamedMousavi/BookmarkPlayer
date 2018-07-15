@@ -1,12 +1,18 @@
-﻿namespace BookmarkPlayer.Domain
+﻿using System.Collections.Generic;
+
+
+namespace BookmarkPlayer.Domain
 {
+
     public interface ISelectable : IComposable
     {
-        ISelectable Selected();
-
-        void Deselect();
-        void Deselect(ISelectable composable);
-        bool IsSelected();
+        IEnumerable<ISelectable> Selected();
+        bool IsSelected(ISelectable selectable);
+        void Deselect(ISelectable selectable);
         void Select(ISelectable selectable);
+
+        bool IsSelected();
+        void Select();
+        void Deselect();
     }
 }
