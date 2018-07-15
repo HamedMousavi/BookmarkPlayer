@@ -56,8 +56,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookmarkableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ComposableTests.cs" />
+    <Compile Include="SelectableTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookmarkPlayer.Domain\BookmarkPlayer.Domain.csproj">

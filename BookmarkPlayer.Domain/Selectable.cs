@@ -14,7 +14,7 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public bool IsSelected(ISelectable selectable)
+        public virtual bool IsSelected(ISelectable selectable)
         {
             return selectable != null &&
                 selectable.IsSelected() &&
@@ -42,19 +42,19 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public void Select()
+        public virtual void Select()
         {
             _isSelected = true;
         }
 
 
-        public void Deselect()
+        public virtual void Deselect()
         {
             _isSelected = false;
         }
 
 
-        public bool IsSelected()
+        public virtual bool IsSelected()
         {
             return _isSelected == true;
         }
