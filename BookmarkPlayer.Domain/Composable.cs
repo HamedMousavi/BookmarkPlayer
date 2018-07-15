@@ -10,18 +10,6 @@ namespace BookmarkPlayer.Domain
     public class Composable : IComposable
     {
 
-        public Composable(string title)
-        {
-            _title = title;
-        }
-
-
-        public string Title()
-        {
-            return _title;
-        }
-
-
         public DateTime? AddedDate()
         {
             return _addedDate;
@@ -38,6 +26,7 @@ namespace BookmarkPlayer.Domain
         {
             if (composable == null) throw new ComposableNullException(nameof(composable));
             if (_children == null) _children = new HashSet<IComposable>();
+            if (_children.Contains(composable)) throw new ComposableAlreadyExistsException(nameof(composable));
 
             composable.AddTo(_children);
         }
@@ -47,7 +36,7 @@ namespace BookmarkPlayer.Domain
         {
             if (_children == null) throw new ComposableListEmptyException();
             if (composable == null) throw new ComposableNullException(nameof(composable));
-            if (!_children.Contains(composable)) throw new NotInComposableListException(composable.Title());
+            if (!_children.Contains(composable)) throw new NotInComposableListException(composable.ToString());
 
             composable.RemoveFrom(_children);
         }
@@ -89,12 +78,6 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public override string ToString()
-        {
-            return $"{Title()} [{AddedDate()}]";
-        }
-
-
         protected virtual bool IsActive(IComposable composable)
         {
             return composable.DeletedDate() == null;
@@ -132,7 +115,6 @@ namespace BookmarkPlayer.Domain
 
 
         protected ICollection<IComposable> _children;
-        protected string _title;
         protected DateTime? _addedDate;
         protected DateTime? _deletedDate;
     }
@@ -152,6 +134,10 @@ namespace BookmarkPlayer.Domain
     public class ComposableNullException : InvalidComposableException
     {
         public ComposableNullException(string name) : base(name) { }
+    }
+    public class ComposableAlreadyExistsException : InvalidComposableException
+    {
+        public ComposableAlreadyExistsException(string name) : base(name) { }
     }
     public class NotInComposableListException : InvalidComposableException
     {

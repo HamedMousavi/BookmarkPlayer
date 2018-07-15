@@ -7,7 +7,6 @@ namespace BookmarkPlayer.Domain
 
     public interface IComposable : ICollection<IComposable>
     {
-        string Title();
         DateTime? AddedDate();
         DateTime? DeletedDate();
 
