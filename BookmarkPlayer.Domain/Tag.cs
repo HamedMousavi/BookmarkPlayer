@@ -21,12 +21,24 @@ namespace BookmarkPlayer.Domain
             return _label;
         }
 
-        internal bool IsEqual(Tag tag)
+        public bool IsEqual(Tag tag)
         {
             return string.Equals(
                 tag.Label(),
                 this.Label(),
                 StringComparison.InvariantCultureIgnoreCase);
+        }
+
+
+        public bool IsLike(string searchPhrase)
+        {
+            return Label().Contains(searchPhrase) ||
+                searchPhrase.Contains(Label());
+        }
+
+        public override string ToString()
+        {
+            return Label();
         }
     }
 }

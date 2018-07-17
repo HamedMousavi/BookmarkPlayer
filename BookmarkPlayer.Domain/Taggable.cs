@@ -20,8 +20,8 @@ namespace BookmarkPlayer.Domain
 
         public virtual bool HasTag(Tag tag)
         {
-            return _tags == null 
-                ? false 
+            return _tags == null
+                ? false
                 : _tags.Any(t => t.IsEqual(tag));
         }
 
@@ -31,6 +31,17 @@ namespace BookmarkPlayer.Domain
             return _tags ?? (_tags = new HashSet<Tag>());
         }
 
+
+        public IEnumerable<TextSearchMatch<Tag>> Search(string searchPhrase)
+        {
+            var words = searchPhrase.Split(' ').Where(s => !string.IsNullOrWhiteSpace(s));
+            var result = new List<TextSearchMatch<Tag>>();
+
+            foreach (var word in words)
+                result.AddRange(_tags.Where(t => t.IsLike(word)).Select(t => new TextSearchMatch<Tag> { Result = t, SearchPhrase = word }));
+
+            return result;
+        }
 
         protected ICollection<Tag> _tags;
     }
