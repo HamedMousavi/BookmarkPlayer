@@ -8,7 +8,7 @@ namespace BookmarkPlayer.Domain
     public class Taggable : Bookmarkable, ITaggable
     {
 
-        public void AddTag(Tag tag)
+        public virtual void AddTag(Tag tag)
         {
             if (!HasTag(tag))
             {
@@ -18,7 +18,7 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public bool HasTag(Tag tag)
+        public virtual bool HasTag(Tag tag)
         {
             return _tags == null 
                 ? false 
@@ -32,6 +32,6 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        private ICollection<Tag> _tags;
+        protected ICollection<Tag> _tags;
     }
 }
