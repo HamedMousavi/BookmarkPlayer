@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bookmarkable.cs" />
     <Compile Include="Composable.cs" />
+    <Compile Include="IBookmarkable.cs" />
     <Compile Include="IComposable.cs" />
     <Compile Include="ISelectable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,14 +8,19 @@ namespace BookmarkPlayer.Domain.Tests
     {
 
         [Fact]
-        public void BookmarkableShouldAllowSetAndUnset()
+        public void BookmarkableShouldAllowToggle()
         {
-            //var bookmarkable = new Bookmarkable();
-            //bookmarkable.Bookmark();
-            //Assert.True(selectable.IsSelected());
+            var parent = new Bookmarkable();
+            var child1 = new Bookmarkable();
 
-            //selectable.Deselect();
-            //Assert.False(selectable.IsSelected());
+            parent.Add(child1);
+            parent.ToggleBookmark(child1);
+            Assert.True(parent.IsBookmarked(child1));
+            Assert.True(child1.IsBookmarkedIn(parent));
+
+            parent.ToggleBookmark(child1);
+            Assert.False(parent.IsBookmarked(child1));
+            Assert.False(child1.IsBookmarkedIn(parent));
         }
     }
 }
