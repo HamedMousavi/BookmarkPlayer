@@ -142,7 +142,7 @@ namespace BookmarkPlayer.Domain
         protected ICollection<IComposable> _children;
         protected DateTime? _addedDate;
         protected DateTime? _deletedDate;
-        private string _name;
+        protected string _name;
     }
 
 
