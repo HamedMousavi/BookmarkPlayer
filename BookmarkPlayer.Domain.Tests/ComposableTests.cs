@@ -75,7 +75,7 @@ namespace BookmarkPlayer.Domain.Tests
             child2.Add(child3);
             Assert.Equal(3, parent.Count);
             Assert.Equal(2, child1.Count);
-            Assert.Equal(1, child2.Count);
+            Assert.Single(child2);
 
             Assert.Contains(child1, parent);
             Assert.Contains(child2, parent);
@@ -102,7 +102,7 @@ namespace BookmarkPlayer.Domain.Tests
             child2.Add(child3);
             Assert.Equal(3, parent.Count);
             Assert.Equal(2, child1.Count);
-            Assert.Equal(1, child2.Count);
+            Assert.Single(child2);
 
             parent.Clear();
             Assert.Empty(parent);

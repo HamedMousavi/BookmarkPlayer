@@ -38,7 +38,7 @@ namespace BookmarkPlayer.Domain
             var result = new List<TextSearchMatch<Tag>>();
 
             foreach (var word in words)
-                result.AddRange(_tags.Where(t => t.IsLike(word)).Select(t => new TextSearchMatch<Tag> { Result = t, SearchPhrase = word }));
+                result.AddRange(_tags.Where(t => t.IsLike(word)).Select(t => new TextSearchMatch<Tag> { Found = t, SearchPhrase = word }));
 
             return result;
         }

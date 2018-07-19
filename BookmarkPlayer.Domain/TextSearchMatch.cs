@@ -3,6 +3,6 @@
     public struct TextSearchMatch<T>
     {
         public string SearchPhrase { get; set; }
-        public T Result { get; set; }
+        public T Found { get; set; }
     }
 }

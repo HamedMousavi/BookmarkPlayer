@@ -49,12 +49,12 @@ namespace BookmarkPlayer.Domain.Tests
 
             var result = taggable.Search("sign");
             Assert.Single(result);
-            Assert.True(designPatterns == result.First().Result);
+            Assert.True(designPatterns == result.First().Found);
 
             result = taggable.Search("n");
             Assert.Equal(2, result.Count());
-            Assert.True(training == result.First().Result);
-            Assert.True(designPatterns == result.Last().Result);
+            Assert.True(training == result.First().Found);
+            Assert.True(designPatterns == result.Last().Found);
         }
     }
 }
