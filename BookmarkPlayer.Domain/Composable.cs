@@ -10,6 +10,18 @@ namespace BookmarkPlayer.Domain
     public class Composable : IComposable
     {
 
+        public Composable()
+        {
+
+        }
+
+
+        public Composable(string name)
+        {
+            _name = name;
+        }
+
+
         public DateTime? AddedDate()
         {
             return _addedDate;
@@ -110,13 +122,27 @@ namespace BookmarkPlayer.Domain
         }
 
 
+        public override string ToString()
+        {
+            return string.Format("{0} Added:{1}, Deleted:{2}", 
+                _name,
+                AddedDate()?.ToString("MM/dd/yyyy hh:mm:ss.fff tt"),
+                DeletedDate()?.ToString("MM/dd/yyyy hh:mm:ss.fff tt")
+                );
+        }
+
+
         public int Count => GetCount();
         public bool IsReadOnly => false;
-
+        public string Name()
+        {
+            return _name;
+        }
 
         protected ICollection<IComposable> _children;
         protected DateTime? _addedDate;
         protected DateTime? _deletedDate;
+        private string _name;
     }
 
 
