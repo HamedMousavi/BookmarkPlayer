@@ -42,11 +42,11 @@
   <ItemGroup>
     <Compile Include="Bookmarkable.cs" />
     <Compile Include="Composable.cs" />
-    <Compile Include="IBookmarkable.cs" />
-    <Compile Include="IComposable.cs" />
-    <Compile Include="ISearchable.cs" />
-    <Compile Include="ISelectable.cs" />
-    <Compile Include="ITaggable.cs" />
+    <Compile Include="Abstract\IBookmarkable.cs" />
+    <Compile Include="Abstract\IComposable.cs" />
+    <Compile Include="Abstract\ISearchable.cs" />
+    <Compile Include="Abstract\ISelectable.cs" />
+    <Compile Include="Abstract\ITaggable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selectable.cs" />
     <Compile Include="Tag.cs" />
