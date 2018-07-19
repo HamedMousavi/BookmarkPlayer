@@ -4,7 +4,7 @@
 namespace BookmarkPlayer.Domain
 {
 
-    public class Tag
+    public class Tag : ISearcher<string>
     {
 
         private string _label;
@@ -37,16 +37,17 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public bool IsLike(string searchPhrase)
-        {
-            return Label().Contains(searchPhrase) ||
-                searchPhrase.Contains(Label());
-        }
-
-
         public override string ToString()
         {
             return Label();
+        }
+
+
+        public bool Contains(string searchPhrase)
+        {
+            // todo: invariant culture
+            return Label().Contains(searchPhrase) ||
+                searchPhrase.Contains(Label());
         }
     }
 }

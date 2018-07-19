@@ -1,6 +1,6 @@
 ﻿namespace BookmarkPlayer.Domain
 {
-    public interface ITaggable : IComposable, ISearchable<TextSearchMatch<Tag>, string>
+    public interface ITaggable : IComposable
     {
         void AddTag(Tag tag);
     }

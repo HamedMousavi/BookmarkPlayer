@@ -1,8 +1,22 @@
 ﻿namespace BookmarkPlayer.Domain
 {
-    public struct TextSearchMatch<T>
+
+    public struct TextSearchResult : ISearchResult<string>
     {
-        public string SearchPhrase { get; set; }
-        public T Found { get; set; }
+
+        public TextSearchResult(ISearcher<string> found, string word)
+        {
+            Found = found;
+            SearchPhrase = word;
+        }
+
+
+        public string SearchPhrase { get; }
+        public ISearcher<string> Found { get; }
+
+        public override string ToString()
+        {
+            return $"Result for '{SearchPhrase}': {Found}";
+        }
     }
 }

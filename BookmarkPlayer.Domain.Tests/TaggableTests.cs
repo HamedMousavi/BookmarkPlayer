@@ -34,27 +34,5 @@ namespace BookmarkPlayer.Domain.Tests
 
             Assert.Equal(3, taggable.Tags().Count());
         }
-
-
-        [Fact]
-        public void TaggableShouldBeSearchable()
-        {
-            var taggable = new Taggable();
-            var designPatterns = new Tag("Design Patterns");
-            var training = new Tag("Training");
-
-            taggable.AddTag("C#");
-            taggable.AddTag(training);
-            taggable.AddTag(designPatterns);
-
-            var result = taggable.Search("sign");
-            Assert.Single(result);
-            Assert.True(designPatterns == result.First().Found);
-
-            result = taggable.Search("n");
-            Assert.Equal(2, result.Count());
-            Assert.True(training == result.First().Found);
-            Assert.True(designPatterns == result.Last().Found);
-        }
     }
 }

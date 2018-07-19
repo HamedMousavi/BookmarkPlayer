@@ -32,17 +32,6 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public virtual IEnumerable<TextSearchMatch<Tag>> Search(string searchPhrase)
-        {
-            var words = searchPhrase.Split(' ').Where(s => !string.IsNullOrWhiteSpace(s));
-            var result = new List<TextSearchMatch<Tag>>();
-
-            foreach (var word in words)
-                result.AddRange(_tags.Where(t => t.IsLike(word)).Select(t => new TextSearchMatch<Tag> { Found = t, SearchPhrase = word }));
-
-            return result;
-        }
-
         protected ICollection<Tag> _tags;
     }
 }

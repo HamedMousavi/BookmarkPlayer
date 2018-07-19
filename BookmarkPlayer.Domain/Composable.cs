@@ -12,7 +12,7 @@ namespace BookmarkPlayer.Domain
 
         public Composable()
         {
-
+            _name = "[Composable]";
         }
 
 

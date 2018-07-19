@@ -9,7 +9,7 @@ namespace BookmarkPlayer.Domain
     public class Navigatable : Taggable, INavigatable
     {
 
-        private IComposable _active;
+        protected IComposable _active;
 
 
         public IComposable CurrentItem()
@@ -55,7 +55,31 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        // todo: Use iteration: this algorithm is not scalable! :-/
+        // Todo: perhaps using a new List<T> is better 
+        // despite its memory overhead:
+
+        // todo: Uses iteration: this algorithm is not scalable! :-/
+        public int CurrentItemIndex()
+        {
+            if (_children == null || !_children.Any())
+                throw new NavigationListEmptyException();
+
+            if (_active == null)
+                throw new NavigationCurrentItemNullException();
+
+            var index = 0;
+
+            foreach (var child in _children)
+            {
+                index++;
+                if (child == _active) return index;
+            }
+
+            return 0;
+        }
+
+
+        // todo: Uses iteration: this algorithm is not scalable! :-/
         private IComposable FindNext(IComposable item)
         {
             var found = false;
@@ -69,7 +93,7 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        // todo: Uses iteration: this algorithm is not scalable! :-/
+        // todo: Usess iteration: this algorithm is not scalable! :-/
         private IComposable FindPrevious(IComposable item)
         {
             var previous = item;

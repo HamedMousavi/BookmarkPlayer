@@ -3,6 +3,7 @@
     public interface INavigatable : IComposable
     {
         IComposable CurrentItem();
+        int CurrentItemIndex();
 
         void MoveTo(IComposable item);
         void MoveFirst();

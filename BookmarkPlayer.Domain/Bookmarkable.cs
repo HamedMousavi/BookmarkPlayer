@@ -22,7 +22,7 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public virtual bool IsBookmarked(IBookmarkable child)
+        public virtual bool IsBookmarked(IComposable child)
         {
             return child != null &&
                 Contains(child) &&
@@ -30,27 +30,27 @@ namespace BookmarkPlayer.Domain
         }
 
 
-        public virtual bool IsBookmarkedIn(IBookmarkable bookmarker)
+        public virtual bool IsBookmarkedIn(IComposable bookmarker)
         {
             return _bookmarkers.Contains(bookmarker);
         }
 
 
-        public virtual void AddBookmarker(IBookmarkable bookmarker)
+        public virtual void AddBookmarker(IComposable bookmarker)
         {
-            if (_bookmarkers == null) _bookmarkers = new HashSet<IBookmarkable>();
+            if (_bookmarkers == null) _bookmarkers = new HashSet<IComposable>();
             if (!_bookmarkers.Contains(bookmarker)) _bookmarkers.Add(bookmarker);
         }
 
 
-        public virtual void RemoveBookmarker(IBookmarkable bookmarker)
+        public virtual void RemoveBookmarker(IComposable bookmarker)
         {
             if (_bookmarkers == null) throw new ComposableNullException(nameof(bookmarker));
             if (_bookmarkers.Contains(bookmarker)) _bookmarkers.Remove(bookmarker);
         }
 
 
-        protected IBookmarkable _bookmark;
-        protected ICollection<IBookmarkable> _bookmarkers;
+        protected IComposable _bookmark;
+        protected ICollection<IComposable> _bookmarkers;
     }
 }
