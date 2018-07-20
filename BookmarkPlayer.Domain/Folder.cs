@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BookmarkPlayer.Domain.Abstract;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -46,7 +47,8 @@ namespace BookmarkPlayer.Domain
             var s = _children?.OfType<ISearchable<string>>().Distinct();
             if (s != null && s.Any())
             {
-                results.AddRange(s.SelectMany(c => c.Search(searchEngine, searchTerm)).Distinct());
+                var children = s.SelectMany(c => c.Search(searchEngine, searchTerm));
+                results.AddRange(children);
             }
 
             results.AddRange(searchEngine.Search(searchTerm, searchers));

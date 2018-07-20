@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Abstract\INavigatable.cs" />
     <Compile Include="Abstract\IProgressable.cs" />
+    <Compile Include="Abstract\ISearchEngine.cs" />
     <Compile Include="AwfulSearchEngine.cs" />
     <Compile Include="Bookmarkable.cs" />
     <Compile Include="Composable.cs" />

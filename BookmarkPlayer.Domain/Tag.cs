@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookmarkPlayer.Domain.Abstract;
+using System;
 
 
 namespace BookmarkPlayer.Domain

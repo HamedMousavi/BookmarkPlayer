@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BookmarkPlayer.Domain.Abstract;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -38,7 +39,7 @@ namespace BookmarkPlayer.Domain
             result.AddRange(
                 searchers
                 .Where(s => s != null && s.Contains(searchPhrase))
-                .Select(t => new TextSearchResult(t, searchPhrase))
+                .Select(t => new TextSearchResult(t, searchPhrase, 100))
                 .OfType<ISearchResult<string>>());
 
             if (!result.Any())
@@ -47,7 +48,7 @@ namespace BookmarkPlayer.Domain
                     result.AddRange(
                         searchers
                         .Where(s => s.Contains(word))
-                    .Select(t => new TextSearchResult(t, word))
+                    .Select(t => new TextSearchResult(t, word, 50))
                     .OfType<ISearchResult<string>>());
             }
 

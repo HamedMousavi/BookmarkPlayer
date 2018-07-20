@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace BookmarkPlayer.Domain
+namespace BookmarkPlayer.Domain.Abstract
 {
 
     public interface ISelectable : IComposable

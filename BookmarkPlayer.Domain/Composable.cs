@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookmarkPlayer.Domain.Abstract;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BookmarkPlayer.Domain
 
         public Composable()
         {
-            _name = "[Composable]";
+            _name = "";
         }
 
 

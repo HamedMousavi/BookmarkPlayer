@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace BookmarkPlayer.Domain
+namespace BookmarkPlayer.Domain.Abstract
 {
 
     public interface IComposable : ICollection<IComposable>

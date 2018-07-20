@@ -1,4 +1,4 @@
-﻿namespace BookmarkPlayer.Domain
+﻿namespace BookmarkPlayer.Domain.Abstract
 {
     public interface ITaggable : IComposable
     {

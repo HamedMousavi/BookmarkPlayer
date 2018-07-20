@@ -9,7 +9,7 @@ namespace BookmarkPlayer.Domain.Tests
     {
 
         [Fact]
-        public void NamableShouldBeNamable()
+        public void FoldersShouldBeSearchable()
         {
             var courses = new Folder();
             var course1 = new Folder("Akka .Net", "C:\\Akka");
