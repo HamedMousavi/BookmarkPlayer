@@ -1,11 +1,11 @@
-﻿using BookmarkPlayer.Domain.Abstract;
+﻿using Lib.Composables.Abstract;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 
-namespace BookmarkPlayer.Domain
+namespace Lib.Composables
 {
 
     public class Composable : IComposable

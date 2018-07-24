@@ -1,8 +1,8 @@
-﻿using BookmarkPlayer.Domain.Abstract;
+﻿using Lib.Composables.Abstract;
 using Xunit;
 
 
-namespace BookmarkPlayer.Domain.Tests
+namespace Lib.Composables.Tests
 {
 
     public class NavigatableTests

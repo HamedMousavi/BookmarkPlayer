@@ -1,8 +1,8 @@
-﻿using BookmarkPlayer.Domain.Abstract;
+﻿using Lib.Composables.Abstract;
 using System;
 
 
-namespace BookmarkPlayer.Domain
+namespace Lib.Composables
 {
 
     public class Tag : ISearcher<string>

@@ -1,7 +1,7 @@
-﻿using BookmarkPlayer.Domain.Abstract;
+﻿using Lib.Composables.Abstract;
 
 
-namespace BookmarkPlayer.Domain
+namespace Lib.Composables
 {
 
     public class Progressable : Navigatable, IProgressable

@@ -1,8 +1,8 @@
-﻿using BookmarkPlayer.Domain.Abstract;
+﻿using Lib.Composables.Abstract;
 using System.Collections.Generic;
 
 
-namespace BookmarkPlayer.Domain
+namespace Lib.Composables
 {
 
     public class Bookmarkable : Selectable, IBookmarkable

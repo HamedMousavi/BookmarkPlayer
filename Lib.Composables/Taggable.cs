@@ -1,9 +1,9 @@
-﻿using BookmarkPlayer.Domain.Abstract;
+﻿using Lib.Composables.Abstract;
 using System.Collections.Generic;
 using System.Linq;
 
 
-namespace BookmarkPlayer.Domain
+namespace Lib.Composables
 {
 
     public class Taggable : Bookmarkable, ITaggable

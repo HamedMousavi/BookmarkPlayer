@@ -1,4 +1,4 @@
-﻿namespace BookmarkPlayer.Domain.Abstract
+﻿namespace Lib.Composables.Abstract
 {
     public interface IBookmarkable : IComposable
     {

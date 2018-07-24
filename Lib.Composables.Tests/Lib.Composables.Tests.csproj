@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}</ProjectGuid>
+    <ProjectGuid>{B6AEF802-627D-4C6C-AA9E-25CCEB676C7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BookmarkPlayer.Domain.Tests</RootNamespace>
-    <AssemblyName>BookmarkPlayer.Domain.Tests</AssemblyName>
+    <RootNamespace>Lib.Composables.Tests</RootNamespace>
+    <AssemblyName>Lib.Composables.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -56,25 +56,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FolderTests.cs" />
+    <Compile Include="BookmarkableTests.cs" />
+    <Compile Include="ComposableTests.cs" />
+    <Compile Include="NavigatableTests.cs" />
+    <Compile Include="ProgressableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BookmarkPlayer.Domain\BookmarkPlayer.Domain.csproj">
-      <Project>{61898b8a-8dff-431b-b842-b4988979c446}</Project>
-      <Name>BookmarkPlayer.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Lib.Composables\Lib.Composables.csproj">
-      <Project>{4ae7428e-420f-45f5-b54f-d47175048dff}</Project>
-      <Name>Lib.Composables</Name>
-    </ProjectReference>
+    <Compile Include="SelectableTests.cs" />
+    <Compile Include="TaggableTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+    <ProjectReference Include="..\Lib.Composables\Lib.Composables.csproj">
+      <Project>{4ae7428e-420f-45f5-b54f-d47175048dff}</Project>
+      <Name>Lib.Composables</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

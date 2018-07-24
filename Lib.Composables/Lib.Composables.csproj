@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61898B8A-8DFF-431B-B842-B4988979C446}</ProjectGuid>
+    <ProjectGuid>{4AE7428E-420F-45F5-B54F-D47175048DFF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BookmarkPlayer.Domain</RootNamespace>
-    <AssemblyName>BookmarkPlayer.Domain</AssemblyName>
+    <RootNamespace>Lib.Composables</RootNamespace>
+    <AssemblyName>Lib.Composables</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AwfulSearchEngine.cs" />
+    <Compile Include="Abstract\IBookmarkable.cs" />
+    <Compile Include="Abstract\IComposable.cs" />
+    <Compile Include="Abstract\INavigatable.cs" />
+    <Compile Include="Abstract\IProgressable.cs" />
+    <Compile Include="Abstract\ISearchable.cs" />
+    <Compile Include="Abstract\ISearchEngine.cs" />
+    <Compile Include="Abstract\ISelectable.cs" />
+    <Compile Include="Abstract\ITaggable.cs" />
+    <Compile Include="Bookmarkable.cs" />
+    <Compile Include="Composable.cs" />
     <Compile Include="Folder.cs" />
+    <Compile Include="Navigatable.cs" />
+    <Compile Include="Progressable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Lib.Composables\Lib.Composables.csproj">
-      <Project>{4ae7428e-420f-45f5-b54f-d47175048dff}</Project>
-      <Name>Lib.Composables</Name>
-    </ProjectReference>
+    <Compile Include="Selectable.cs" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="Taggable.cs" />
+    <Compile Include="TextSearchResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BookmarkPlayer.Domain.Abstract
+namespace Lib.Composables.Abstract
 {
     public interface ISearchEngine<T>
     {

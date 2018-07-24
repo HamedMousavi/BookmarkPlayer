@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkPlayer.Domain", "Bo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookmarkPlayer.Domain.Tests", "BookmarkPlayer.Domain.Tests\BookmarkPlayer.Domain.Tests.csproj", "{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Composables", "Lib.Composables\Lib.Composables.csproj", "{4AE7428E-420F-45F5-B54F-D47175048DFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib.Composables.Tests", "Lib.Composables.Tests\Lib.Composables.Tests.csproj", "{B6AEF802-627D-4C6C-AA9E-25CCEB676C7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1BF294B-DAF2-4B6E-AFFF-B114CF43D926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE7428E-420F-45F5-B54F-D47175048DFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE7428E-420F-45F5-B54F-D47175048DFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE7428E-420F-45F5-B54F-D47175048DFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE7428E-420F-45F5-B54F-D47175048DFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6AEF802-627D-4C6C-AA9E-25CCEB676C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6AEF802-627D-4C6C-AA9E-25CCEB676C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6AEF802-627D-4C6C-AA9E-25CCEB676C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6AEF802-627D-4C6C-AA9E-25CCEB676C7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
