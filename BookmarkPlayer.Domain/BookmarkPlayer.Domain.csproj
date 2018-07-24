@@ -58,7 +58,7 @@
     <Compile Include="Selectable.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="Taggable.cs" />
-    <Compile Include="TextSearchMatch.cs" />
+    <Compile Include="TextSearchResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
