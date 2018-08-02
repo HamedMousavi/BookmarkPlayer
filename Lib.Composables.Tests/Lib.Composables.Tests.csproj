@@ -58,7 +58,9 @@
   <ItemGroup>
     <Compile Include="BookmarkableTests.cs" />
     <Compile Include="ComposableTests.cs" />
+    <Compile Include="ExecutableTests.cs" />
     <Compile Include="NavigatableTests.cs" />
+    <Compile Include="NotifiableTests.cs" />
     <Compile Include="ProgressableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectableTests.cs" />

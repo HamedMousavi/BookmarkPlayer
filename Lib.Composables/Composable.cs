@@ -8,7 +8,7 @@ using System.Linq;
 namespace Lib.Composables
 {
 
-    public class Composable : IComposable
+    public class Composable : Observable, IComposable
     {
 
         public Composable()
@@ -42,6 +42,7 @@ namespace Lib.Composables
             if (_children.Contains(composable)) throw new ComposableAlreadyExistsException(nameof(composable));
 
             composable.AddTo(_children);
+            Notify(new Added(composable));
         }
 
 
@@ -125,7 +126,7 @@ namespace Lib.Composables
 
         public override string ToString()
         {
-            return string.Format("{0} Added:{1}, Deleted:{2}", 
+            return string.Format("{0} Added:{1}, Deleted:{2}",
                 _name,
                 AddedDate()?.ToString("MM/dd/yyyy hh:mm:ss.fff tt"),
                 DeletedDate()?.ToString("MM/dd/yyyy hh:mm:ss.fff tt")
@@ -146,6 +147,7 @@ namespace Lib.Composables
         protected string _name;
     }
 
+    #region Exceptions
 
     public class ComposableException : Exception { }
     public class ComposableListEmptyException : ComposableException { }
@@ -174,4 +176,21 @@ namespace Lib.Composables
     {
         public ComposableNotSupportedException(string name) : base(name) { }
     }
+
+    #endregion Exceptions
+
+
+    #region Events
+
+    public class Added
+    {
+        public IComposable AddedItem { get; }
+
+        public Added(IComposable composable)
+        {
+            AddedItem = composable;
+        }
+    }
+
+    #endregion Events
 }

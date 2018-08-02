@@ -44,6 +44,7 @@
     <Compile Include="Abstract\IComposable.cs" />
     <Compile Include="Abstract\IExecutable.cs" />
     <Compile Include="Abstract\INavigatable.cs" />
+    <Compile Include="Abstract\IObservable.cs" />
     <Compile Include="Abstract\IProgressable.cs" />
     <Compile Include="Abstract\ISearchable.cs" />
     <Compile Include="Abstract\ISearchEngine.cs" />
@@ -51,9 +52,9 @@
     <Compile Include="Abstract\ITaggable.cs" />
     <Compile Include="Bookmarkable.cs" />
     <Compile Include="Composable.cs" />
-    <Compile Include="Folder.cs" />
     <Compile Include="Executable.cs" />
     <Compile Include="Navigatable.cs" />
+    <Compile Include="Observable.cs" />
     <Compile Include="Progressable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selectable.cs" />
