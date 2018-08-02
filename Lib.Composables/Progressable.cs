@@ -7,7 +7,7 @@ namespace Lib.Composables
     public class Progressable : Navigatable, IProgressable
     {
 
-        public Progress Progress()
+        public virtual Progress Progress()
         {
             return new Progress(_active == null ? 0 : CurrentItemIndex(), GetCount());
         }
