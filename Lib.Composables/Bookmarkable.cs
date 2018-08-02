@@ -54,4 +54,10 @@ namespace Lib.Composables
         protected IComposable _bookmark;
         protected ICollection<IComposable> _bookmarkers;
     }
+
+
+    public class AddedBookmarker : Added
+    {
+        public AddedBookmarker(IComposable composable) : base(composable) { }
+    }
 }

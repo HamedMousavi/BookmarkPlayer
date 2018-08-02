@@ -42,7 +42,6 @@ namespace Lib.Composables
             if (_children.Contains(composable)) throw new ComposableAlreadyExistsException(nameof(composable));
 
             composable.AddTo(_children);
-            Notify(new Added(composable));
         }
 
 

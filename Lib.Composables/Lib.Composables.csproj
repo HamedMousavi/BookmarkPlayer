@@ -54,6 +54,7 @@
     <Compile Include="Composable.cs" />
     <Compile Include="Executable.cs" />
     <Compile Include="Navigatable.cs" />
+    <Compile Include="Notifiable.cs" />
     <Compile Include="Observable.cs" />
     <Compile Include="Progressable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

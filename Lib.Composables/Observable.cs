@@ -26,7 +26,7 @@ namespace Lib.Composables
         }
 
 
-        public void Notify<T>(T t)
+        protected void Notify<T>(T t)
         {
             var type = typeof(T);
 
@@ -57,10 +57,4 @@ namespace Lib.Composables
                 .ForAll(o => o((T)t));
         }
     }
-
-
-
-    public class AddedBookmarker : Added
-    { public AddedBookmarker(IComposable composable) : base(composable) { } }
-
 }

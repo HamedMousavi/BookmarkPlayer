@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 
@@ -11,7 +10,7 @@ namespace Lib.Composables.Tests
         [Fact]
         public void AddEventShouldBeObservable()
         {
-            var parent = new Composable("parent");
+            var parent = new Notifiable();
             var children = new List<Composable>
             {
                 new Composable("Child 1"),
