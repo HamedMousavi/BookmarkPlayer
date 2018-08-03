@@ -8,7 +8,7 @@ namespace Lib.Composables
     public class Tag : ISearcher<string>
     {
 
-        private string _label;
+        private readonly string _label;
 
 
         public Tag(string label)
@@ -46,9 +46,7 @@ namespace Lib.Composables
 
         public bool Contains(string searchPhrase)
         {
-            // todo: invariant culture
-            return Label().Contains(searchPhrase) ||
-                searchPhrase.Contains(Label());
+            return new TextSearcher(Label()).Search(searchPhrase);
         }
     }
 }

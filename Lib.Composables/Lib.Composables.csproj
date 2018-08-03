@@ -58,6 +58,7 @@
     <Compile Include="Observable.cs" />
     <Compile Include="Progressable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextSearchable.cs" />
     <Compile Include="Selectable.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="Taggable.cs" />

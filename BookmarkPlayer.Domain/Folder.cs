@@ -1,13 +1,11 @@
 ﻿using Lib.Composables;
 using Lib.Composables.Abstract;
-using System.Collections.Generic;
-using System.Linq;
 
 
 namespace BookmarkPlayer.Domain
 {
 
-    public class Folder : Progressable, ISearchable<string>, ISearcher<string>
+    public class Folder : TextSearchable, ISearcher<string>
     {
 
         private readonly string _path;
@@ -26,35 +24,15 @@ namespace BookmarkPlayer.Domain
 
         public bool Contains(string term)
         {
-            var found = string.IsNullOrEmpty(_name)
-                ? false
-                : _name.Contains(term) || term.Contains(_name);
-
-            found |= string.IsNullOrEmpty(_path)
-                ? false
-                : _path.Contains(term) || term.Contains(_path);
-
-            return found;
+            return new TextSearcher(_name, _path).Search(term);
         }
 
 
-        public IEnumerable<ISearchResult<string>> Search(ISearchEngine<string> searchEngine, string searchTerm)
+        protected override TextSearcherList GetTextSearchers()
         {
-            var searchers = new List<ISearcher<string>>();
-            searchers.AddRange(Tags());
-            searchers.Add(this);
-
-            var results = new List<ISearchResult<string>>();
-            var s = _children?.OfType<ISearchable<string>>().Distinct();
-            if (s != null && s.Any())
-            {
-                var children = s.SelectMany(c => c.Search(searchEngine, searchTerm));
-                results.AddRange(children);
-            }
-
-            results.AddRange(searchEngine.Search(searchTerm, searchers));
-                        
-            return results;
+            return new TextSearcherList()
+                .Add(Tags())
+                .Add(this);
         }
     }
 }
