@@ -1,11 +1,10 @@
 ﻿using Lib.Composables;
-using Lib.Composables.Abstract;
 
 
 namespace BookmarkPlayer.Domain
 {
 
-    public class Folder : TextSearchable, ISearcher<string>
+    public class Folder : TextSearchable, IFolder
     {
 
         private readonly string _path;

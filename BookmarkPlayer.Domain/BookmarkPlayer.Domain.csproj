@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AwfulSearchEngine.cs" />
     <Compile Include="Folder.cs" />
+    <Compile Include="IFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
