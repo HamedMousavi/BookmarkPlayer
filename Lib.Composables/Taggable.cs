@@ -35,4 +35,22 @@ namespace Lib.Composables
 
         protected ICollection<Tag> _tags;
     }
+
+
+    public class AddedTag
+    {
+
+        public AddedTag(Tag tag)
+        {
+            _tag = tag;
+        }
+
+
+        public Tag Tag()
+        {
+            return _tag;
+        }
+        
+        private Tag _tag;
+    }
 }

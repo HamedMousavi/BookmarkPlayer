@@ -14,10 +14,24 @@ namespace Lib.Composables
         }
 
 
+        protected override void Delete(IComposable composable)
+        {
+            base.Delete(composable);
+            Notify(new Deleted(composable));
+        }
+
+
         public override void AddBookmarker(IComposable bookmarker)
         {
             base.AddBookmarker(bookmarker);
             Notify(new AddedBookmarker(bookmarker));
+        }
+
+
+        public override void AddTag(Tag tag)
+        {
+            base.AddTag(tag);
+            Notify(new AddedTag(tag));
         }
     }
 }

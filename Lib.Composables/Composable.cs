@@ -181,15 +181,27 @@ namespace Lib.Composables
 
     #region Events
 
-    public class Added
+    public class ComposableEvent
     {
-        public IComposable AddedItem { get; }
+        private readonly IComposable _composable;
 
-        public Added(IComposable composable)
+        public ComposableEvent(IComposable composable)
         {
-            AddedItem = composable;
+            _composable = composable;
         }
+
+        public IComposable Composable()
+        {
+            return _composable;
+        }
+
     }
+
+    public class Added : ComposableEvent
+    { public Added(IComposable composable) : base(composable) { } }
+
+    public class Deleted : ComposableEvent
+    { public Deleted(IComposable composable) : base(composable) { } }
 
     #endregion Events
 }

@@ -23,8 +23,8 @@ namespace Lib.Composables.Tests
 
             parent.When<Added>(e =>
             {
-                Assert.NotNull(e.AddedItem);
-                Assert.True(parent.Contains(e.AddedItem));
+                Assert.NotNull(e.Composable());
+                Assert.True(parent.Contains(e.Composable()));
                 eventRaisedCount++;
             });
 
