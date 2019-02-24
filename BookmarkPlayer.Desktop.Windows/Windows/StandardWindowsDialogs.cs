@@ -12,7 +12,7 @@
 namespace BookmarkPlayer.Desktop.Windows
 {
 
-    public class StandarWindowsDialogs
+    public class StandardWindowsDialogs
     {
 
         private static string _lastSelectedFilePath;

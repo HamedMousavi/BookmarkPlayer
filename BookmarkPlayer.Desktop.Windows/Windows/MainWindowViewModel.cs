@@ -1,4 +1,6 @@
 ﻿using Akka.Actor;
+using BookmarkPlayer.Desktop.Windows.Windows.Controls;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -8,9 +10,6 @@ namespace BookmarkPlayer.Desktop.Windows
 
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-
-        private ActorSystem _system;
-
 
         public MainWindowViewModel()
         {
@@ -24,6 +23,14 @@ namespace BookmarkPlayer.Desktop.Windows
             return ActorSystem.Create("BookmarkPlayerSystem");
         }
 
+        public List<LibraryViewModel> Libraries => new List<LibraryViewModel>
+        {
+            new LibraryViewModel("Programming"),
+            new LibraryViewModel("Movies")
+        };
+
+        private ActorSystem _system;
+
 
         #region PropertyChanged
 
@@ -36,5 +43,23 @@ namespace BookmarkPlayer.Desktop.Windows
         }
 
         #endregion PropertyChanged
+    }
+
+    public class LibraryViewModel
+    {
+
+        public LibraryViewModel(string header)
+        {
+            Header = header;
+            Content = new List<ShelfViewModel>
+            {
+                new ShelfViewModel("Akka .Net"),
+                new ShelfViewModel("OOD"),
+            };
+        }
+
+
+        public string Header { get; }
+        public List<ShelfViewModel> Content { get; }
     }
 }

@@ -80,13 +80,20 @@
     <Compile Include="Actors\Shell.cs" />
     <Compile Include="Annotations.cs" />
     <Compile Include="BootStrapper.cs" />
-    <Compile Include="FolderViewModel.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="SelectedPlayListItemConverter.cs" />
-    <Compile Include="StandarWindowsDialogs.cs" />
-    <Compile Include="WindowPlacement.cs" />
-    <Compile Include="WindowPlacementStore.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Windows\Controls\Shelf.xaml.cs">
+      <DependentUpon>Shelf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Controls\ShelfViewModel.cs" />
+    <Compile Include="Windows\StandardWindowsDialogs.cs" />
+    <Compile Include="Windows\WindowPlacement.cs" />
+    <Compile Include="Windows\WindowPlacementStore.cs" />
+    <Page Include="Windows\Controls\Shelf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -94,13 +101,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="Windows\MainWindowViewModel.cs" />
     <Compile Include="PathUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -147,6 +154,9 @@
       <Project>{4AE7428E-420F-45F5-B54F-D47175048DFF}</Project>
       <Name>Lib.Composables</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

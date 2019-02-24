@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BookmarkPlayer.Desktop.Windows"
+        xmlns:controls="clr-namespace:BookmarkPlayer.Desktop.Windows.Windows.Controls"
         mc:Ignorable="d"
         Name="WndMain"
         Title="Watched" Height="600" Width="800">
@@ -53,19 +53,36 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Padding="4" Margin="0" FontWeight="Bold">Libraries</Label>
-                <TabControl Grid.Row="1" Grid.Column="0" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                    <TabItem Header="TabItem">
-                        <Grid Background="#FFE5E5E5"/>
-                    </TabItem>
-                    <TabItem Header="TabItem">
-                        <Grid Background="#FFE5E5E5"/>
-                    </TabItem>
+                <Label Grid.Row="0" Grid.Column="0" Padding="0" Margin="0" FontWeight="Bold" FontSize="14">Libraries</Label>
+                <TabControl Grid.Row="1" Grid.Column="0" x:Name="tabControl" Margin="0" Padding="0"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                            ItemsSource="{Binding Path=Libraries, Mode=OneWay}">
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontWeight="Bold" Text="{Binding Header}" />
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <ListBox Margin="0" Padding="0" 
+                                     ItemsSource="{Binding Content}" 
+                                     SelectedItem="{Binding SelectedShelf}"
+                                     HorizontalContentAlignment="Stretch" 
+                                     Background="WhiteSmoke" 
+                                     VerticalContentAlignment="Stretch">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <controls:Shelf />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
                 </TabControl>
 
             </Grid>
