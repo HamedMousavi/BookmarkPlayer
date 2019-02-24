@@ -12,11 +12,9 @@ namespace BookmarkPlayer.Desktop.Windows
             base.OnStartup(e);
 
             var loader = new BootStrapper();
-
             loader.Bootstrap();
             loader.Locate<MainWindow>().Show();
         }
-
     }
 
 }

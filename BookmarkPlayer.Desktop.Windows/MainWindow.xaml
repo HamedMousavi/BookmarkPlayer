@@ -48,114 +48,27 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Padding="6" Margin="6" FontWeight="Bold" Text="{Binding Path=DirectoriesDetail, Mode=OneWay}"></TextBlock>
-            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="6" HorizontalAlignment="Right">
-                <Button Padding="2" Margin="5, 0" Width="32" Height="32" BorderThickness="0" ToolTip="Add New Directory To List"
-                    Command="{Binding AddDirectoryCommand}" CommandParameter="{Binding ElementName=WndMain}" Cursor="Hand" Background="Transparent">
-                    <Image Style="{StaticResource LessBlurryImage}" Source="{StaticResource AddDirectoryIcon}" />
-                </Button>
-                <Button Padding="2" Margin="0" Width="32" Height="32" BorderThickness="0" ToolTip="Remove Selected Directory From List"
-                    Command="{Binding RemoveDirectoryCommand}" CommandParameter="{Binding ElementName=WndMain}" Cursor="Hand" Background="Transparent">
-                    <Image Style="{StaticResource LessBlurryImage}" Source="{StaticResource RemoveDirectoryIcon}" />
-                </Button>
-            </StackPanel>
-            <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="6,0,6,6" Padding="0"
-                     ItemsSource="{Binding Folders}" SelectedItem="{Binding SelectedDirectory}"
-                     HorizontalContentAlignment="Stretch" Background="WhiteSmoke" VerticalContentAlignment="Stretch">
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="local:DirectoryViewModel">
-                        <Border Padding="1" Margin="1" MinHeight="50"
-                                BorderThickness="1" BorderBrush="LightGray" >
-                            <Grid Margin="0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Button Grid.Row="0" Grid.Column="0" Command="{Binding OpenDirectoryCommand}"
-                                        Margin="6,6,6,0" Padding="0" Background="Transparent" BorderThickness="0" BorderBrush="Transparent"
-                                        Cursor="Hand" ToolTip="Open Containing Directory">
-                                    <!--<Image MaxWidth="24" MaxHeight="24" Source="../Images/dir.png"></Image>-->
-                                    <Image MaxWidth="24" MaxHeight="24" Margin="0" Style="{StaticResource LessBlurryImage}" Source="{StaticResource FolderIcon}" />
-                                </Button>
-                                <Label Grid.Row="0" Grid.Column="1" Content="{Binding Name}" VerticalAlignment="Stretch" VerticalContentAlignment="Center" />
-                                <ProgressBar  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" MaxHeight="3" MinHeight="3"
-                                          Value="{Binding Path=Progress, Mode=OneWay}" Minimum="0" Maximum="100"
-                                          BorderThickness="0" Visibility="{Binding IsProgressBarVisible}" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-                <TextBlock Padding="6" Margin="6" Text="{Binding Path=FilesDetails, Mode=OneWay}" FontWeight="Bold"></TextBlock>
-                <Button Padding="2" Margin="6" Width="32" Height="32" Command="{Binding PlayPreviousCommand}" BorderThickness="0" ToolTip="Play Previous" Cursor="Hand" Background="Transparent">
-                    <Image Style="{StaticResource LessBlurryImage}" Source="{StaticResource PlayPrevIcon}" />
-                </Button>
-                <Button Padding="2" Margin="6" Width="32" Height="32" Command="{Binding PlayCurrentCommand}" BorderThickness="0" ToolTip="Play Bookmark" Cursor="Hand" Background="Transparent">
-                    <Image Style="{StaticResource LessBlurryImage}" Source="{StaticResource PlayCurrIcon}" />
-                </Button>
-                <Button Padding="2" Margin="6" Width="32" Height="32" Command="{Binding PlayNextCommand}" BorderThickness="0" ToolTip="Play Next" Cursor="Hand" Background="Transparent">
-                    <Image Style="{StaticResource LessBlurryImage}" Source="{StaticResource PlayNextIcon}" />
-                </Button>
-                <Button Padding="2" Margin="6" Width="32" Height="32" Command="{Binding SetBookmarkCommand}" BorderThickness="0" ToolTip="Bookmark Selected File" Cursor="Hand" Background="Transparent">
-                    <Image Style="{StaticResource LessBlurryImage}" Source="{StaticResource SetCurrIcon}" />
-                </Button>
-            </StackPanel>
-            <DataGrid Grid.Row="1" Grid.Column="2" Name="FileListDataGrid" Visibility="Visible"
-                      IsReadOnly="True" CanUserAddRows="False"
-                      SelectionMode="Single" SelectionUnit="FullRow" 
-                      AutoGenerateColumns="False" Margin="6,0,6,6"
-                      ItemsSource="{Binding Path=PlayListViewModel, Mode=OneWay}"
-                      SelectedItem="{Binding Path=SelectedPlayableViewModel}">
-                <DataGrid.InputBindings>
-                    <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding PlaySelectedCommand}" />
-                </DataGrid.InputBindings>
-                <DataGrid.Resources>
-                    <ResourceDictionary>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="NavajoWhite"/>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black"/>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="NavajoWhite"/>
-                        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black"/>
-                        <local:SelectedPlayListItemConverter x:Key="SelectedPlayListItem" />
-                    </ResourceDictionary>
-                </DataGrid.Resources>
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <EventSetter Event="RequestBringIntoView" Handler="DisableScrollEventHandler"></EventSetter>
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="FontWeight" Value="ExtraBold" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <Image Width="16" Source="{Binding Path=IsPlaying, Mode=OneWay, Converter={StaticResource SelectedPlayListItem}}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="#" Binding="{Binding Path=RowIndex}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="File Name" Binding="{Binding Path=Label}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Path" Binding="{Binding Path=FilePath}"></DataGridTextColumn>
-                </DataGrid.Columns>
+            <Grid Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Padding="4" Margin="0" FontWeight="Bold">Libraries</Label>
+                <TabControl Grid.Row="1" Grid.Column="0" x:Name="tabControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                    <TabItem Header="TabItem">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                    <TabItem Header="TabItem">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                </TabControl>
 
-            </DataGrid>
+            </Grid>
         </Grid>
 
 

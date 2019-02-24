@@ -25,11 +25,11 @@ namespace BookmarkPlayer.Desktop.Windows
 
         private void MainWindowViewModelPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (string.Equals(e.PropertyName, nameof(MainWindowViewModel.SelectedPlayableViewModel), System.StringComparison.InvariantCultureIgnoreCase))
-            {
-                var selection = ((MainWindowViewModel)DataContext).SelectedPlayableViewModel;
-                ScrollToSelection(selection);
-            }
+            //if (string.Equals(e.PropertyName, nameof(MainWindowViewModel.SelectedPlayableViewModel), System.StringComparison.InvariantCultureIgnoreCase))
+            //{
+            //    var selection = ((MainWindowViewModel)DataContext).SelectedPlayableViewModel;
+            //    ScrollToSelection(selection);
+            //}
         }
 
 
@@ -37,8 +37,8 @@ namespace BookmarkPlayer.Desktop.Windows
         {
             _scrolling = true;
 
-            FileListDataGrid.UpdateLayout();
-            FileListDataGrid.ScrollIntoView(selection);
+            //FileListDataGrid.UpdateLayout();
+            //FileListDataGrid.ScrollIntoView(selection);
 
             _scrolling = false;
         }
