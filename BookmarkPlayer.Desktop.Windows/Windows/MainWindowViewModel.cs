@@ -23,6 +23,7 @@ namespace BookmarkPlayer.Desktop.Windows
             return ActorSystem.Create("BookmarkPlayerSystem");
         }
 
+
         public List<LibraryViewModel> Libraries => new List<LibraryViewModel>
         {
             new LibraryViewModel("Programming"),

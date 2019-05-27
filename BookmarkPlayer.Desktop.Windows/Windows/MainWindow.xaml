@@ -28,11 +28,11 @@
     </Window.Resources>
     <DockPanel LastChildFill="True">
 
-        <StatusBar DockPanel.Dock="Bottom">
+        <StatusBar DockPanel.Dock="Bottom" Background="Silver">
 
             <!--<Separator DockPanel.Dock="Right" />-->
             <StatusBarItem Margin="0" Padding="0" DockPanel.Dock="Right">
-                <StackPanel Margin="0" Orientation="Horizontal" Background="WhiteSmoke">
+                <StackPanel Margin="0" Orientation="Horizontal">
                     <Label Content="At"></Label>
                     <Label Content="{Binding Path=Status.Count}"></Label>
                 </StackPanel>
@@ -45,10 +45,10 @@
             </StatusBarItem>
         </StatusBar>
 
-        <Grid>
+        <Grid Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
