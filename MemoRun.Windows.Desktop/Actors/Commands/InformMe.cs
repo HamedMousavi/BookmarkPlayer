@@ -1,10 +1,10 @@
 ﻿namespace MemoRun.Windows.Desktop.Actors.Commands
 {
 
-    public class Inform
+    public class SendEventsTo
     {
 
-        public Inform(object me)
+        public SendEventsTo(object me)
         {
             Subscriber = me;
         }

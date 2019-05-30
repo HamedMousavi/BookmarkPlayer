@@ -15,7 +15,7 @@ namespace MemoRun.Windows.Desktop
         public void Bootstrap()
         {
             _container = new DependencyInjectionContainer();
-            _container.Configure(c => c.ExportInstance(new MainWindowViewModel(Create<Actors.Library>())).As<MainWindowViewModel>().Lifestyle.Singleton());
+            _container.Configure(c => c.ExportInstance(new MainWindowViewModel(Create<Actors.LibraryDirector>())).As<MainWindowViewModel>().Lifestyle.Singleton());
 
             //_container.Configure(c =>
             //{

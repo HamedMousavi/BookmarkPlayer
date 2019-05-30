@@ -42,7 +42,7 @@
                             ItemsSource="{Binding Path=Libraries, Mode=OneWay}">
                 <TabControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock FontWeight="Bold" Text="{Binding Header}" />
+                        <TextBlock FontWeight="Bold" Text="{Binding Title}" />
                     </DataTemplate>
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
