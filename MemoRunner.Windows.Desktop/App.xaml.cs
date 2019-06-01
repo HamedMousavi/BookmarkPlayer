@@ -1,7 +1,7 @@
-﻿using System.Windows;
+﻿using MemoRunner.Windows.Desktop.Views;
+using System.Windows;
 
-
-namespace BookmarkPlayer.Desktop.Windows
+namespace MemoRunner.Windows.Desktop
 {
 
     public partial class App : Application

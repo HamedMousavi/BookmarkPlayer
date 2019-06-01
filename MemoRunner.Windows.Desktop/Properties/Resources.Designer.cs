@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BookmarkPlayer.Desktop.Windows.Properties
+namespace MemoRunner.Windows.Desktop.Properties
 {
 
 
@@ -44,7 +44,7 @@ namespace BookmarkPlayer.Desktop.Windows.Properties
             {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BookmarkPlayer.Desktop.Windows.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MemoRunner.Windows.Desktop.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
