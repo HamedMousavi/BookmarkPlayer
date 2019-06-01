@@ -16,7 +16,7 @@ namespace MemoRun.Windows.Desktop.Views
         public MainWindowViewModel(IActorRef library)
         {
             _libDirector = library;
-            _libDirector.Tell(new SendEventsTo(this));
+            _libDirector.Tell(SendEvents.To(this).IncludeArchivedEvents());
         }
 
 

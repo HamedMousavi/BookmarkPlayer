@@ -1,13 +1,37 @@
 ﻿namespace MemoRun.Windows.Desktop.Actors.Commands
 {
 
-    public class SendEventsTo
+    public class SendEvents
     {
 
-        public SendEventsTo(object me)
+        public object Subscriber { get; }
+        public SynchronizationPolocy SyncPolocy { get; private set; }
+
+
+        public SendEvents(object me, SynchronizationPolocy syncPolocy = SynchronizationPolocy.IgnoreArchivedMessages)
         {
             Subscriber = me;
+            SyncPolocy = syncPolocy;
         }
 
-        public object Subscriber { get; }
-    }}
+
+        internal static SendEvents To(object subscriber)
+        {
+            return new SendEvents(subscriber);
+        }
+
+
+        internal SendEvents IncludeArchivedEvents()
+        {
+            SyncPolocy = SynchronizationPolocy.SendArchivedMessages;
+            return this;
+        }
+    }
+
+
+    public enum SynchronizationPolocy
+    {
+        IgnoreArchivedMessages,
+        SendArchivedMessages
+    }
+}
