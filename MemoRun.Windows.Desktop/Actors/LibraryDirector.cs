@@ -1,52 +1,48 @@
 ﻿using Akka.Actor;
-using Akka.Persistence;
 using MemoRun.Windows.Desktop.Actors.Commands;
 using MemoRun.Windows.Desktop.Actors.Events;
 using MemoRun.Windows.Desktop.Resources;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text.Json.Serialization;
+using System.Linq;
 
 
 namespace MemoRun.Windows.Desktop.Actors
 {
 
-    public class LibraryDirector : ReceivePersistentActor
+    public class LibraryDirector : AutoSnapshotActor
     {
-
-        public override string PersistenceId => "LibraryDirector";
-
 
         public LibraryDirector()
         {
-            Command<Add<Library>>(message => AddLibrary(message.Item));
+            EnableEventStore<Add<Library>>(
+                e => OnLibraryAdded(e.Item), 
+                e => OnLibraryAdded(e.Item));
+
+            EnableSnapshot<IEnumerable<string>>(
+                new EventCountPersistPolocy(5), 
+                _persistSerializer, 
+                GetSnapshot, 
+                SetSnapshot);
+
             Command<SendEvents>(message => RegisterSubscriber(message));
-
-            Recover<Added<Library>>(message => OnLibraryAdded(message.Item));
-            Recover<SnapshotOffer>(offer => OnLibrariesAdded(Deserialize(offer.Snapshot)));
         }
 
 
-        private void RegisterSubscriber(SendEvents subscription)
+        private void OnLibraryAdded(Library library)
         {
-            _bc.Subscribe(subscription.Subscriber);
-            if (subscription.SyncPolocy == SynchronizationPolocy.SendArchivedMessages)
-            {
-                foreach (var lib in _libraryNames)
-                {
-                    _bc.Publish(new Added<Library>(lib));
-                }
-            }
+            _libraries.Add(library);
+            _children.Add(Context.ActorOf(Props.Create(() => new LibraryManager(library))));
+            _bc.Publish(new Added<Library>(library));
         }
 
 
-        protected override bool Receive(object message)
+        private object GetSnapshot()
         {
-            return base.Receive(message);
+            return _libraries.Select(lib => lib.Title).ToArray();
         }
 
 
-        private void OnLibrariesAdded(IEnumerable<string> titles)
+        private void SetSnapshot(IEnumerable<string> titles)
         {
             foreach (var title in titles)
             {
@@ -55,61 +51,29 @@ namespace MemoRun.Windows.Desktop.Actors
         }
 
 
-        private void AddLibrary(Library library)
+        private void RegisterSubscriber(SendEvents subscription)
         {
-            var e = new Added<Library>(library.Title);
-            Persist(e, added =>
+            _bc.Subscribe(subscription.Subscriber);
+            if (subscription.SyncPolocy == SynchronizationPolocy.SendArchivedMessages)
             {
-                OnLibraryAdded(added.Item);
-                if (ShouldTakeSnapshot()) TakeSnapshot();
-            });
+                foreach (var lib in _libraries)
+                {
+                    _bc.Publish(new Added<Library>(lib));
+                }
+            }
         }
 
 
-        private void OnLibraryAdded(Library library)
+        protected override string GetPersistId()
         {
-            _libraryNames.Add(library.Title);
-            _libraries.Add(Context.ActorOf(Props.Create(() => new LibraryManager(library.Title))));
-            _bc.Publish(new Added<Library>(library));
+            return "LibraryDirector";
         }
 
 
-        private bool ShouldTakeSnapshot()
-        {
-            return _eventCount++ > 5;
-        }
-
-
-        private void TakeSnapshot()
-        {
-            _eventCount = 0;
-            SaveSnapshot(Serialize(_libraryNames.ToArray()));
-        }
-
-
-        private object Serialize(string[] libraryNames)
-        {
-            return JsonSerializer.ToString(libraryNames);
-        }
-
-
-        private IEnumerable<string> Deserialize(object snapshot)
-        {
-            return JsonSerializer.Parse<IEnumerable<string>>((string)snapshot);
-        }
-
-
-        protected override void PostStop()
-        {
-            Debug.WriteLine(">> Library Director Stopped!!");
-            base.PostStop();
-        }
-
-
-        private readonly List<IActorRef> _libraries = new List<IActorRef>();
-        private readonly List<string> _libraryNames = new List<string>();
+        private readonly List<IActorRef> _children = new List<IActorRef>();
+        private readonly List<Library> _libraries = new List<Library>();
         private readonly Broadcaster _bc = new Broadcaster();
-        private int _eventCount;
+        private readonly IPersistSerializer _persistSerializer = new JsonPersistSerializer();
 
 
         #region Commands

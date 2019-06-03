@@ -1,4 +1,5 @@
 ﻿using Akka.Persistence;
+using MemoRun.Windows.Desktop.Resources;
 
 
 namespace MemoRun.Windows.Desktop.Actors
@@ -7,9 +8,9 @@ namespace MemoRun.Windows.Desktop.Actors
     public class LibraryManager : ReceivePersistentActor
     {
 
-        public LibraryManager(string libraryName)
+        public LibraryManager(Library library)
         {
-            PersistenceId = new RandomName().StartWith(libraryName);
+            PersistenceId = new RandomName().StartWith(library.Title);
         }
 
 
